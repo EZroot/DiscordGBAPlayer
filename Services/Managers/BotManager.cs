@@ -226,15 +226,13 @@ namespace DiscordGamePlayer.Services.Managers
                     for (int i = 0; i < _numberEmojis.Length; i++)
                     {
                         string? emoji = _numberEmojis[i];
-                        // Determine button style based on the emoji for demonstration (customize as needed)
                         ButtonStyle style = GetStyleByIndex(i);
 
-                        // Create each button with the emoji as the label and custom ID
                         buttonBuilder.WithButton(
-                            // label: new Emoji(emoji).Name,   // Use the emoji itself as a label
-                            customId: "press_" + i,     // Unique custom ID for each button
-                            style: style,                   // Style based on the emoji
-                            emote: new Emoji(emoji)         // The actual emoji displayed on the button
+                            // label: new Emoji(emoji).Name,   
+                            customId: "press_" + i,     
+                            style: style,                
+                            emote: new Emoji(emoji)         
                         );
                     }
                     var msg = await channel.SendFileAsync(path, components: buttonBuilder.Build());
