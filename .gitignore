@@ -9,6 +9,7 @@
 *.userosscache
 *.sln.docstates
 
+[Ss]creenshots/
 [Pp]ublish/
 publish.zip
 ## Mono auto generated files ##
