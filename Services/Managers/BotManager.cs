@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 using DiscordGamePlayer.Events;
-using DiscordGamePlayer.Events.Events;
+using DiscordGamePlayer.Events.EventArgs;
 using DiscordGamePlayer.GamePlayer.Interfaces;
 using DiscordGamePlayer.Models;
 using DiscordGamePlayer.Services.Interfaces;

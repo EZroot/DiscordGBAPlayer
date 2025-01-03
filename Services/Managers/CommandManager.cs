@@ -1,9 +1,9 @@
-﻿using DiscordGamePlayer.Commands.Interfaces;
-using DiscordGamePlayer.Services.Interfaces;
+﻿using DiscordGamePlayer.Services.Interfaces;
 using Discord;
 using Discord.WebSocket;
 using System.Reflection;
 using DiscordGamePlayer.Utils;
+using DiscordGamePlayer.DiscordCommands.Interfaces;
 
 namespace DiscordGamePlayer.Services.Managers
 {

@@ -1,6 +1,5 @@
 ﻿using DiscordGamePlayer.Services;
 using DiscordGamePlayer.Services.Interfaces;
-using DiscordGamePlayer.GamePlayer;
 
 namespace DiscordGamePlayer
 {

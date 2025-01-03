@@ -1,8 +1,8 @@
 ﻿using Discord;
 using Discord.Audio;
 using Discord.WebSocket;
-using DiscordGamePlayer.Events.Events;
 using DiscordGamePlayer.Events;
+using DiscordGamePlayer.Events.EventArgs;
 using DiscordGamePlayer.Models;
 using DiscordGamePlayer.Services.Interfaces;
 using DiscordGamePlayer.Utils;

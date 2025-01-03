@@ -1,6 +1,6 @@
 ﻿using Discord.Audio;
 using DiscordGamePlayer.Events;
-using DiscordGamePlayer.Events.Events;
+using DiscordGamePlayer.Events.EventArgs;
 using DiscordGamePlayer.Services.Interfaces;
 using System.Diagnostics;
 using Debug = DiscordGamePlayer.Utils.Debug;
