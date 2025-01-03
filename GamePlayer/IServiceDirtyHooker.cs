@@ -7,5 +7,6 @@ namespace DiscordGamePlayer.GamePlayer.Interfaces
         Task InitializeAsync(string emulatorName);
         Task<string> GetEmulatorScreenshot();
         Task SendKeyPressToEmulator(string key);
+        Task SendKeyPressToX11Window(string key);
     }
 }

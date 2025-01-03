@@ -187,6 +187,7 @@ namespace DiscordGamePlayer.Services.Managers
             Debug.Log($"Trying to execute: {key}");
             var keyCode = Service.Get<IServiceKeyMapper>().ParseKeyCode(component.Data.CustomId);
             await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator(keyCode);
+            // await Service.Get<IServiceDirtyHooker>().SendKeyPressToX11Window(keyCode);
 
             Debug.Log($"<color=magenta>{component.User.Username}</color> <color=white>:></color> Button Sent: <color=cyan>{key}</color>");
             EventHub.Raise(new EvForceReadyForUpdate());

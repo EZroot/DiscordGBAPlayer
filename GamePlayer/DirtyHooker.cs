@@ -1,12 +1,13 @@
 using System.Diagnostics;
 using DiscordGamePlayer.GamePlayer.Interfaces;
+using DiscordGamePlayer.Interop;
 
 namespace DiscordGamePlayer.GamePlayer
 {
     internal class DirtyHooker : IServiceDirtyHooker
     {
-        private const int SCREENSHOT_DELAY = 1500;
-        private const int KEYPRESS_DELAY = 1000;
+        private const int SCREENSHOT_DELAY = 300;
+        private const int KEYPRESS_DELAY = 100;
 
         private ProcessHelper? _processHelper;
         private int _pid;
@@ -14,6 +15,7 @@ namespace DiscordGamePlayer.GamePlayer
         public async Task InitializeAsync(string emulatorName)
         {
             _processHelper = new ProcessHelper();
+
             _pid = await FindEmulatorPid(emulatorName);
             if (_pid == -1)
             {
@@ -43,12 +45,43 @@ namespace DiscordGamePlayer.GamePlayer
             await Task.Delay(SCREENSHOT_DELAY);
             string activateCommand = $"xdotool windowactivate {windowId} && xdotool windowraise {windowId}";
             await _processHelper.RunCommandAsync(activateCommand);
-            // await Task.Delay(500);  // Allow some time for the window to be activated and raised
 
             string screenshotCommand = $"import -window {windowId} '{fullPath}'";
             await _processHelper.RunCommandAsync(screenshotCommand);
 
             return fullPath;
+        }
+
+        //TODO: FIX THIS
+        public async Task SendKeyPressToX11Window(string key)
+        {
+            string windowId = await GetWindowIdFromPid(_pid);
+            if (string.IsNullOrEmpty(windowId))
+            {
+                Console.WriteLine("Failed to get window ID from PID.");
+                return;
+            }
+
+            IntPtr display = DisplayHelper.GetDisplay();
+            IntPtr window = new IntPtr(Convert.ToInt64(windowId, 16));
+            int keycode = GetKeyCodeFromKey(key);
+
+            if (keycode == -1)
+            {
+                Console.WriteLine("Unsupported key.");
+                return;
+            }
+
+            X11Interop.XEvent eventToSend = new X11Interop.XEvent
+            {
+                type = 2,  // KeyPress
+                window = window,
+                keycode = (uint)keycode,
+                state = 0  // No modifier keys
+            };
+
+            X11Interop.XSendEvent(display, window, false, 1L << 0, ref eventToSend);  // KeyPressMask
+            X11Interop.XFlush(display);
         }
 
         public async Task SendKeyPressToEmulator(string key)
@@ -61,13 +94,10 @@ namespace DiscordGamePlayer.GamePlayer
                 return;
             }
 
-            string activateCommand = $"xdotool windowactivate {windowId} && xdotool windowraise {windowId}";
-            await _processHelper.RunCommandAsync(activateCommand);
+            string keyPressCommand = $"xdotool windowactivate {windowId} && xdotool windowraise {windowId} && xdotool windowfocus {windowId} && xdotool key --clearmodifiers {key}";
+            await _processHelper.RunCommandAsync(keyPressCommand);
             
             await Task.Delay(KEYPRESS_DELAY);
-
-            string keyPressCommand = $"xdotool windowfocus {windowId} key {key}";
-            await _processHelper.RunCommandAsync(keyPressCommand);
         }
 
         private async Task<string> GetWindowIdFromPid(int pid)
@@ -99,6 +129,21 @@ namespace DiscordGamePlayer.GamePlayer
             }
 
             return -1;
+        }
+
+        private int GetKeyCodeFromKey(string key)
+        {
+            switch (key.ToUpper())
+            {
+                case "X": return 53;
+                case "Z": return 52;
+                case "LEFT": return 113;
+                case "RIGHT": return 114;
+                case "UP": return 111;
+                case "DOWN": return 116;
+                case "ENTER": return 36;
+                default: return -1;
+            }
         }
     }
 }

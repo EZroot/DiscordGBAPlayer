@@ -25,8 +25,6 @@ namespace DiscordGamePlayer.Services.Managers
 
         public string ParseKeyCode(string keycode)
         {
-            Debug.Log($"Trying to parse: {keycode}");
-            Debug.Log($"Parsed: {keycode} -> {_keyMap[keycode]}");
             return _keyMap[keycode];
         }
     }
