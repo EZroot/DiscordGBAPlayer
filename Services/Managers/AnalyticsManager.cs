@@ -8,7 +8,7 @@ namespace DiscordGamePlayer.Services.Managers
         private AnalyticData _analyticData;
         public AnalyticData AnalyticData => _analyticData;
 
-        public async Task Initialize()
+        public async Task InitializeAsync()
         {
             try
             {

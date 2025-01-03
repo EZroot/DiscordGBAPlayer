@@ -38,31 +38,31 @@ namespace DiscordGamePlayer.Commands.Commands
                 switch (word.Trim().ToLower())
                 {
                     case "left":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("Left");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("Left");
                         debug += "left";
                         break;
 
                     case "up":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("Up");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("Up");
                         debug += "up";
                         break;
 
                     case "right":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("Right");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("Right");
                         debug += "right";
                         break;
                     case "down":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("Down");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("Down");
                         debug += "down";
                         break;
 
                     case "a":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("x");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("x");
                         debug += "a";
                         break;
 
                     case "b":
-                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToRetroArch("z");
+                        await Service.Get<IServiceDirtyHooker>().SendKeyPressToEmulator("z");
                         debug += "b";
                         break;
                 }

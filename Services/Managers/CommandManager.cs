@@ -9,7 +9,6 @@ namespace DiscordGamePlayer.Services.Managers
 {
     internal class CommandManager : IServiceCommandManager
     {
-
         private readonly Dictionary<string, IDiscordCommand> _commands = new();
         private readonly List<SlashCommandBuilder> _slashCommandBuilder = new();
 

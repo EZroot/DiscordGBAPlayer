@@ -54,24 +54,46 @@ namespace DiscordGamePlayer.Services.Managers
             var apiKey = config.ApiKey;//Environment.GetEnvironmentVariable(config.EnvPath);
             var guildId = config.GuildId;
             var channelId = config.ChannelId;
-            var motto = config.CustomStatus;
+            var emulatorName = config.EmulatorName;
             var debugMode = config.DebugMode;
+            var motto = config.CustomStatus;
+            var keyMap = config.KeyMapper;
 
-            if (!string.IsNullOrEmpty(apiKey)) return new BotData { ApiKey = apiKey, GuildId = guildId, ChannelId = channelId, CustomStatus = motto, DebugMode = debugMode };
+            if (!string.IsNullOrEmpty(apiKey)) return new BotData { ApiKey = apiKey, GuildId = guildId, ChannelId = channelId, EmulatorName = emulatorName, CustomStatus = motto, KeyMapper = keyMap, DebugMode = debugMode };
             return config;
         }
 
         private void CreateDefaultConfig()
         {
-            var motto = new string[] {"Just chillaxin...", "Thinking about life..", "Pondering the universe", "Waiting for AI Overlords."};
+            var motto = new string[] { 
+                "Just chillaxin...", 
+                "Thinking about life..", 
+                "Pondering the universe", 
+                "Waiting for AI Overlords." 
+            };
+
+            var keymap = new Dictionary<string, string>
+            {
+                { "left", "Left" },
+                { "up", "Up" },
+                { "right", "Right" },
+                { "down", "Down" },
+                { "a", "x" },
+                { "b", "z" },
+                { "start", "Enter" },
+                { "select", "Enter" }
+            };
+
             var defaultConfig = new BotData
             {
                 ApiKey = "Replace me",
                 EnvPath = "API_KEY",
                 GuildId = "Replace me with server id",
                 ChannelId = "Replace me with channel id",
+                EmulatorName = "retroarch",
+                DebugMode = false,
                 CustomStatus = motto,
-                DebugMode = false
+                KeyMapper = keymap
             };
 
             try
@@ -84,22 +106,22 @@ namespace DiscordGamePlayer.Services.Managers
                 Debug.Log($"Error during serialization: {ex.Message}");
             }
 
-            Debug.Log("<color=green>config.json</color> created! <color=white>Please exit the bot and fill in your discord bot api key and guild id (server id).");
+            Debug.Log("<color=green>config.json</color> created! <color=white>Please exit the bot and fill in your discord bot api key and guild id (server id) and the channel id.");
             Debug.Log("GuildId -> Right click your discord server 'Copy Server Id'");
             Debug.Log("ApiKey -> Sign in to https://discord.com/developers,  go to 'Bot' tab, Reset & Copy <color=white>Token");
             Debug.Log("<color=white>Example:");
             Debug.Log("\t\tApiKey	'MjY5NzcY5NMjY5NzcYMjY5Nzc.MjY5Nzc.MjY5NzcjY5NzcMjY5Nzc-ozWf2JDfLVtKGUK3rXQz'");
             Debug.Log("\t\tGuildId	'308708637679812608'");
             Console.Read();
-            
+
         }
 
         private void CreateDefaultAnalytics()
         {
             var defaultAnalytics = new AnalyticData
             {
-                GlobalMostPlayedSongs = new List<SongAnlyticData>(),  
-                UserAnalyticData = new List<UserAnalyticData>(),       
+                GlobalMostPlayedSongs = new List<SongAnlyticData>(),
+                UserAnalyticData = new List<UserAnalyticData>(),
                 RecentSongHistory = new SongData[10] //Default song history is 10                    
             };
 

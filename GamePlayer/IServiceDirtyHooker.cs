@@ -4,8 +4,8 @@ namespace DiscordGamePlayer.GamePlayer.Interfaces
 {
     internal interface IServiceDirtyHooker : IService
     {
-        Task InitializeAsync();
-        Task<string> PeepinTom();
-        Task SendKeyPressToRetroArch(string key);
+        Task InitializeAsync(string emulatorName);
+        Task<string> GetEmulatorScreenshot();
+        Task SendKeyPressToEmulator(string key);
     }
 }
