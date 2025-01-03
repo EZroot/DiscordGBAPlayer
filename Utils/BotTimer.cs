@@ -1,7 +1,7 @@
 
 using System.Timers;
 using DiscordGamePlayer.Events;
-using DiscordGamePlayer.Events.Events;
+using DiscordGamePlayer.Events.EventArgs;
 
 namespace DiscordGamePlayer.Utils
 {

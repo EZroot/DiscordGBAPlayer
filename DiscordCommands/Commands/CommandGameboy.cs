@@ -1,15 +1,10 @@
 ﻿using Discord.WebSocket;
 using Discord;
-using DiscordGamePlayer.Commands.Interfaces;
-using DiscordGamePlayer.Services.Interfaces;
-using DiscordGamePlayer.Services;
-using DiscordGamePlayer.GamePlayer;
-using System.Diagnostics;
-using DiscordGamePlayer.GamePlayer.Interfaces;
+using DiscordGamePlayer.DiscordCommands.Interfaces;
 using DiscordGamePlayer.Events;
-using DiscordGamePlayer.Events.Events;
+using DiscordGamePlayer.Events.EventArgs;
 
-namespace DiscordGamePlayer.Commands.Commands
+namespace DiscordGamePlayer.DiscordCommands.Commands
 {
     internal class CommandGameboy : IDiscordCommand
     {

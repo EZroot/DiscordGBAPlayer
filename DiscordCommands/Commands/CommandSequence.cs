@@ -1,14 +1,10 @@
 using Discord.WebSocket;
 using Discord;
-using DiscordGamePlayer.Commands.Interfaces;
-using DiscordGamePlayer.Services.Interfaces;
 using DiscordGamePlayer.Services;
-using DiscordGamePlayer.GamePlayer;
-using System.Diagnostics;
-using DiscordGamePlayer.GamePlayer.Interfaces;
-using System.Collections;
 using DiscordGamePlayer.Events;
-using DiscordGamePlayer.Events.Events;
+using DiscordGamePlayer.Events.EventArgs;
+using DiscordGamePlayer.DiscordCommands.Interfaces;
+using DiscordGamePlayer.GamePlayer.Interfaces;
 
 namespace DiscordGamePlayer.Commands.Commands
 {

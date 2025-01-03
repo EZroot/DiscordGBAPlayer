@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.WebSocket;
 
-namespace DiscordGamePlayer.Commands.Interfaces
+namespace DiscordGamePlayer.DiscordCommands.Interfaces
 {
     internal interface IDiscordCommand
     {

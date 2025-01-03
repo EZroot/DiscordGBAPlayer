@@ -1,4 +1,4 @@
-namespace DiscordGamePlayer.Events.Events
+namespace DiscordGamePlayer.Events.EventArgs
 {
     public struct EvOnTimerLoop
     {

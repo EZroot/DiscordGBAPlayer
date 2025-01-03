@@ -1,7 +1,3 @@
-using System;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using DiscordGamePlayer.GamePlayer.Interfaces;
 
 namespace DiscordGamePlayer.GamePlayer
@@ -18,9 +14,10 @@ namespace DiscordGamePlayer.GamePlayer
             _pid = await FindRetroArchPid();
             if (_pid == -1)
             {
-                Debug.Writeline("RetroArch is not running or PID could not be found.");
+                Utils.Debug.Log("RetroArch is not running or PID could not be found.");
             }
-            Debug.Writeline("Found pid " + _pid.ToString());
+            Utils.Debug.Log
+            ("Found pid " + _pid.ToString());
         }
 
         public async Task<string> PeepinTom()
