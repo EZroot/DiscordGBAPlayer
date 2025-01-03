@@ -18,9 +18,9 @@ namespace DiscordGamePlayer.GamePlayer
             _pid = await FindRetroArchPid();
             if (_pid == -1)
             {
-                Console.WriteLine("RetroArch is not running or PID could not be found.");
+                Debug.Writeline("RetroArch is not running or PID could not be found.");
             }
-            Console.WriteLine("Found pid " + _pid.ToString());
+            Debug.Writeline("Found pid " + _pid.ToString());
         }
 
         public async Task<string> PeepinTom()
